@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;     
+    background-color: #426b1e;
+    font-family: sans-serif;
+}
+
+#titulo {
+    color: white;
+    font-size: 10lvh;
+    text-shadow: 5px 5px 15px black;
+    margin: 20px;
+}
+
+#conteiner {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 5px 5px 15px black;
+    width: 400px;
+    max-width: 90%;
+}
