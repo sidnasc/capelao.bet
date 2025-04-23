@@ -20,7 +20,8 @@ with app.app_context():
 app.add_url_rule('/', "index", UserController.index)
 app.add_url_rule('/add_usuario', 'nosquemetebala',  UserController.add_usuarios, methods=['POST'])
 app.add_url_rule('/add_evento', 'nosquenaometebala',  UserController.add_evento, methods=['POST'])
+app.add_url_rule('/add_aposta', 'talvesnosquemetebala',  UserController.add_aposta, methods=['POST'])
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+    app.run(host="0.0.0.0", port="5000", debug=True)

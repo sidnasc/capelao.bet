@@ -23,6 +23,23 @@
             <input type="date" name="data" required>
             <button type="submit" method="post">Salvar</button>
         </form>
+
+        <h2>Adicionar aposta</h2>
+        <form action="/add_aposta" method="POST">
+            <label for="nome">Nome da Aposta:</label><br>
+            <input type="text" id="nome" name="nome" required><br><br>
+          
+            <label for="data">Data:</label><br>
+            <input type="date" id="data" name="data" required><br><br>
+          
+            <label for="odd">Odd:</label><br>
+            <input type="number" id="odd" name="odd" step="0.01" min="1.00" required><br><br>
+          
+            <label for="idEvento">ID do Usuário:</label><br>
+            <input type="number" id="idEvento" name="idUsuario" required><br><br>
+          
+            <button type="submit">Criar Aposta</button>
+          </form>
     
         <h2>Usuários cadastrados:</h2>
         <ul>
@@ -37,6 +54,15 @@
         <ul>
             {% for evento in eventos %}
                 <li>{{ evento["nome"] }} : {{ evento["data"]}}</li>
+            {% else %}
+                <li>Nenhum usuário ainda.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>apostas cadastradas:</h2>
+        <ul>
+            {% for aposta in apostas %}
+                <li>{{ aposta["nome"] }} : {{ aposta["data"]}} : apostador {{ aposta.Usuario.nome}}</li>
             {% else %}
                 <li>Nenhum usuário ainda.</li>
             {% endfor %}
