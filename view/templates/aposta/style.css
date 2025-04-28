@@ -1,0 +1,91 @@
+:root {
+    --cor1: #C8CA89;
+    --cor2: #057932;
+    --cor3: #14AF51;
+    --cor4: #132308;
+    --cor5: #5F6A30;
+}
+
+body {
+    position: relative;
+    font-family: Arial, sans-serif;
+    background-color: var(--cor4);
+    text-align: center;
+    padding-top: 50px;
+
+}
+  
+div {
+    background-color: var(--cor1);
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 120px;
+}
+.botas {
+    height: 150px;
+    margin-left: -15px;
+}
+  
+input {
+    padding: 10px;
+    width: 80%;
+    margin: 10px 0;
+    font-size: 16px;
+    border-radius: 10px;
+    
+}
+  
+button {
+    transition: all linear 100ms;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1.5px solid black;
+    margin-top: 10px;
+    background-color: var(--cor5);
+    color: var(--cor1);
+    font-weight: bold;
+}  
+button:hover {
+    background-color: var(--cor4);
+    transition: all linear 100ms;
+}
+.arvore1 {
+    position: absolute;
+    top: 340px;
+    left: 10px;
+}
+
+.arvore2 {
+    position: absolute;
+    top: 340px;
+    right: 20px;
+}
+
+.grama1 {
+    position: absolute;
+    top: 618px;
+    left: -10px;
+}
+
+.grama2 {
+    position: absolute;
+    top: 618px;
+    left: 560px;
+}
+
+.grama3 {
+    position: absolute;
+    top: 618px;
+    left: 900px;
+}
+
+.grama4 {
+    position: absolute;
+    top: 618px;
+    right: 0;
+}
