@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Capelao BET</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css.css') }}">
+</head>
+<body>
+
+    <h1 id="titulo">Capelao BET</h1>
+    <div id="conteiner">
+
+        <h2>Login</h2>
+        <form method="post" action="/verificarLogin">
+            <label >Email: </label>
+            <input type="text" name="email" placeholder="Digite o email" required>
+            <br>
+
+            <label >Senha: </label>
+            <input type="text" name="senha" placeholder="Digite a senha" required>
+            <br>
+            
+            <button type="submit" method="post">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>

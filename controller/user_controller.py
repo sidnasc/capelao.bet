@@ -15,11 +15,40 @@ class UserController:
         return flask.render_template('placeholder.html', usuarios=usuarios, eventos=eventos, apostas=apostas)
     
     @staticmethod
+    def login():
+        return flask.render_template('login.html')
+    
+    @staticmethod
+    def registrar():
+        return flask.render_template('registrar.html')
+    
+    @staticmethod
+    def verificarLogin():
+        if flask.request.method == 'POST':
+            email = flask.request.form['email']
+            senha = flask.request.form['senha']
+
+            usuario: Usuario = Usuario.query.filter_by(email=email, senha=senha).first()
+
+            if usuario:
+                print(usuario.nome)
+
+            else:
+                print("nenhum usuario achado")
+                
+
+        return flask.redirect(flask.url_for('login'))
+
+
+    
+    @staticmethod
     def add_usuarios():
         if flask.request.method == 'POST':
-            nome =flask. request.form['nome']
+            nome =flask.request.form['nome']
+            email = flask.request.form['email']
+            senha = flask.request.form['senha']
 
-            newUsuario = Usuario(nome=nome)
+            newUsuario = Usuario(nome=nome, email=email, senha=senha)
             db.session.add(newUsuario)
             db.session.commit()
 

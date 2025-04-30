@@ -6,6 +6,8 @@ class Usuario(db.Model):
     # atributos basicos
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(70), nullable=False)
+    email = db.Column(db.String(70), nullable=False)
+    senha = db.Column(db.String(70), nullable=False)
     dinheiro = db.Column(db.Integer, default=0)
 
     # relacionamento
@@ -16,4 +18,3 @@ class Usuario(db.Model):
 
     def aumentarDinheiro(self, valorAumentado: float):
         self.dinheiro += valorAumentado
-    
