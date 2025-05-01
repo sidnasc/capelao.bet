@@ -9,10 +9,13 @@ class UserController:
 
     @staticmethod
     def index():
-        usuarios = Usuario.query.all()
-        eventos = Eventos.query.all()
-        apostas = Aposta.query.all()
-        return flask.render_template('placeholder.html', usuarios=usuarios, eventos=eventos, apostas=apostas)
+        if 'usuario' in flask.session:
+            usuarios = Usuario.query.all()
+            eventos = Eventos.query.all()
+            apostas = Aposta.query.all()
+            logado = Usuario.query.get(flask.session['usuario'])
+            return flask.render_template('placeholder.html', usuarios=usuarios, eventos=eventos, apostas=apostas, logado=logado)
+        return flask.redirect(flask.url_for('login'))
     
     @staticmethod
     def login():
@@ -32,6 +35,8 @@ class UserController:
 
             if usuario:
                 print(usuario.nome)
+                flask.session['usuario'] = usuario.id  
+                return flask.redirect(flask.url_for('index'))
 
             else:
                 print("nenhum usuario achado")
