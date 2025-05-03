@@ -2,6 +2,7 @@ import flask
 import os
 import config
 from controller.user_controller import UserController
+from controller.admin_controller import AdminController
 
 
 
@@ -26,8 +27,8 @@ app.add_url_rule('/verificarLogin', "verficarLogin", UserController.verificarLog
 app.add_url_rule('/registrar', "registrar", UserController.registrar)
 app.add_url_rule('/add_usuario', 'add_usuario',  UserController.add_usuarios, methods=['POST'])
 
-app.add_url_rule('/add_evento', 'add_evento',  UserController.add_evento, methods=['POST'])
-app.add_url_rule('/add_aposta', 'add_aposta',  UserController.add_aposta, methods=['POST'])
+app.add_url_rule('/add_evento', 'add_evento',  AdminController.add_evento, methods=['POST'])
+app.add_url_rule('/add_aposta', 'add_aposta',  AdminController.add_aposta, methods=['POST'])
 
 
 if __name__ == "__main__":
