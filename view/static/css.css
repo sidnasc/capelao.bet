@@ -23,4 +23,9 @@ body {
     box-shadow: 5px 5px 15px black;
     width: 400px;
     max-width: 90%;
+    margin: 10px;
+}
+
+#caixa {
+    display: flex;
 }

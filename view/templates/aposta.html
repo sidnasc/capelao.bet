@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo do Bixo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Numbro do bixo</h1>
+    <img class="botas" src="{{ url_for('static', filename='img/botas.png') }}" alt="">
+
+    <p>Tente adivinhar um número entre 1 e 10</p> 
+
+    <p id="mensagemSaldo">R$:{{ logado.dinheiro }}</p>
+
+    <input type="number" id="valorAposta" placeholder="Valor da aposta">
+    <button onclick="depositar()" class="depositar">Depositar</button>
+
+    <input type="number" id="palpite" placeholder="Digite seu palpite" />
+    <button onclick="verificarPalpite()" class="enviar">Enviar</button>
+
+    <p id="mensagem"></p>
+    <p>Tentativas: <span id="tentativas">0</span></p>
+  </div>
+
+  <img class="arvore1" src="{{ url_for('static', filename='img/arvore.png') }}" alt="">
+  <img class="arvore2" src="{{ url_for('static', filename='img/arvore.png') }}" alt="">
+  <!-- <img class="arvore3" src="img/arvore.png" alt=""> -->
+
+  <img class="grama1" src="{{ url_for('static', filename='img/grama.png') }}" alt="">
+  <img class="grama2" src="{{ url_for('static', filename='img/grama.png') }}" alt="">
+  <img class="grama3" src="{{ url_for('static', filename='img/grama.png') }}" alt="">
+  <img class="grama4" src="{{ url_for('static', filename='img/grama.png') }}" alt="">
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

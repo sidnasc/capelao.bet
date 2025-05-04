@@ -8,11 +8,13 @@ class Usuario(db.Model):
     nome = db.Column(db.String(70), nullable=False)
     email = db.Column(db.String(70), nullable=False)
     senha = db.Column(db.String(70), nullable=False)
-    dinheiro = db.Column(db.Integer, default=0)
+    dinheiro = db.Column(db.Integer, default=50)
+    admin = db.Column(db.Boolean, default=False)
 
     # relacionamento
     Aposta = db.relationship('Aposta', back_populates='Usuario')
 
+    # metodos
     def reduzirDinheiro(self, valorReduzido: float):
         self.dinheiro -= valorReduzido
 

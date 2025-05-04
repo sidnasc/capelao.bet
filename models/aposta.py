@@ -1,14 +1,16 @@
-import flask_sqlalchemy
-import sqlalchemy
 from config import db
+from enum import Enum
+
+class TipoOdd(Enum):
+    CASA = 'casa'
+    VISITANTE = 'visitante'
 
 class Aposta(db.Model): 
     __tablename__ = "aposta"
+
     # atributos basicos
     id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(50), nullable=False)
-    data = db.Column(db.Date, nullable=False)
-    odd = db.Column(sqlalchemy.Numeric(5, 2))
+    tipoOdd = db.Column(db.Enum(TipoOdd), nullable=False)
     
     # chaves estrangeiras
     idUsuario = db.Column(db.Integer, db.ForeignKey('Usuario.id'))
@@ -16,4 +18,10 @@ class Aposta(db.Model):
 
     idEvento = db.Column(db.Integer, db.ForeignKey('Eventos.id'))
     Eventos = db.relationship('Eventos', back_populates='Aposta')
+
+    def oddEscolhida(self):
+        if self.tipoOdd == TipoOdd.CASA:
+            return self.Eventos.oddCasa
+        else:
+            return self.Eventos.oddVisitante
 

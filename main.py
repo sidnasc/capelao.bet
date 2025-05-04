@@ -3,6 +3,7 @@ import os
 import config
 from controller.user_controller import UserController
 from controller.admin_controller import AdminController
+from controller.bixo_controller import bixoController
 
 
 
@@ -21,14 +22,19 @@ with app.app_context():
 
 app.add_url_rule('/', "index", UserController.index)
 
+app.add_url_rule('/admin', "admin", AdminController.admin)
+
 app.add_url_rule('/login', "login", UserController.login)
 app.add_url_rule('/verificarLogin', "verficarLogin", UserController.verificarLogin, methods=['POST'])
+app.add_url_rule('/logOut', "logOut", UserController.logOut)
 
 app.add_url_rule('/registrar', "registrar", UserController.registrar)
 app.add_url_rule('/add_usuario', 'add_usuario',  UserController.add_usuarios, methods=['POST'])
 
 app.add_url_rule('/add_evento', 'add_evento',  AdminController.add_evento, methods=['POST'])
 app.add_url_rule('/add_aposta', 'add_aposta',  AdminController.add_aposta, methods=['POST'])
+
+app.add_url_rule('/numbroDoBixo', "numbroDoBixo", bixoController.numbroBixo)
 
 
 if __name__ == "__main__":

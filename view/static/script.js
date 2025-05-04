@@ -59,11 +59,8 @@ function verificarPalpite() {
       input.disabled = true;
       botao.disabled = true;
       valorAposta.disabled = true;
-    } else if (palpite < numeroSecreto) {
-      mensagem.textContent = "Muito baixo. Tente um número maior.";
-      mensagem.style.color = "red";
-    } else {
-      mensagem.textContent = "Muito alto. Tente um número menor.";
+    }  else {
+      mensagem.textContent = "Tente novamente.";
       mensagem.style.color = "red";
     }
   }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Capelao BET</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css.css') }}">
+</head>
+<body>
+
+    <h1 id="titulo">Capelao BET</h1>
+    <div id="caixa">
+
+        <div id="conteiner">
+            <h1>Bem viado, {{ logado.nome }}</h1>
+        
+            <h2>Adicionar evento</h2>
+            <form method="post" action="/add_evento">
+                <label >Nome:</label>
+                <input type="text" name="nome" placeholder="Digite o nome" required><br><br>
+
+                <label >Data:</label>
+                <input type="date" name="data" required><br><br>
+
+                <label for="odd">Odd da casa:</label>
+                <input type="number" id="odd" name="oddCasa" step="0.01" min="1.00" required><br><br>
+                
+                <label for="odd">Odd do visitante:</label>
+                <input type="number" id="odd" name="oddVisitante" step="0.01" min="1.00" required><br><br>
+                <button type="submit" method="post">Salvar</button><br>
+            </form>
+    
+        
+              <br>
+              <a href="/logOut">Sair da conta</a>
+            </div>
+    
+            <div id="conteiner">
+    
+                <h2>Usuários cadastrados:</h2>
+                <ul>
+                    {% for usuario in usuarios %}
+                        <li>{{ usuario["nome"] }} : R${{ usuario["dinheiro"]}}</li>
+                    {% else %}
+                        <li>Nenhum usuário ainda.</li>
+                    {% endfor %}
+                </ul>
+            
+                <h2>eventos cadastrados:</h2>
+                <ul>
+                    {% for evento in eventos %}
+                        <li>{{ evento["nome"] }} : {{ evento["data"]}}</li>
+                    {% else %}
+                        <li>Nenhum usuário ainda.</li>
+                    {% endfor %}
+                </ul>
+        
+                <h2>apostas cadastradas:</h2>
+                <ul>
+                    {% for aposta in apostas %}
+                        <li>{{ aposta["odd"] }} : {{ aposta["data"]}} : evento - {{ aposta.Eventos.nome}}</li>
+                    {% else %}
+                        <li>Nenhum usuário ainda.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+        
+    
+</body>
+</html>
