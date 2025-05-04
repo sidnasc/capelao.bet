@@ -7,24 +7,24 @@
 </head>
 <body>
 
-    <h1 id="titulo">Capelao BET</h1>
+    <h1 id="titulo">Capelao.BET 🐒</h1>
     <div id="conteiner">
 
         <h2>Adicionar usuário</h2>
         <form method="post" action="/add_usuario">
             <label >Nome de usuario: </label>
-            <input type="text" name="nome" placeholder="Digite o nome" required>
+            <input type="text" name="nome" placeholder="Digite o nome" required autocomplete="off">
             <br>
 
             <label >Email: </label>
-            <input type="text" name="email" placeholder="Digite o email" required>
+            <input type="text" name="email" placeholder="Digite o email" required autocomplete="off">
             <br>
 
             <label >Senha: </label>
-            <input type="text" name="senha" placeholder="Digite a senha" required>
+            <input type="password" name="senha" placeholder="Digite a senha" required autocomplete="off">
             <br>
             
-            <button type="submit" method="post">Salvar</button>
+            <button class="salvar" type="submit" method="post">Salvar</button>
         </form>
 
         <div>
@@ -32,6 +32,10 @@
                 Ja tem conta? <a href="/login">clique aqui</a>
             </p>
         </div>
+    </div>
+    <div class="casadas">
+        <p>Está sozinho Williamys?</p>
+        <a href="#">clique aqui para encontrar a sua companhia</a>
     </div>
 </body>
 </html>
