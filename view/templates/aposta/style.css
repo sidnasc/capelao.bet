@@ -16,6 +16,7 @@ body {
 }
   
 div {
+    z-index: 999;
     background-color: var(--cor1);
     padding: 30px;
     border-radius: 10px;
@@ -23,6 +24,7 @@ div {
     margin: 0 auto;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     margin-top: 120px;
+    margin-top: 50px;
 }
 .botas {
     height: 150px;
@@ -30,6 +32,7 @@ div {
 }
   
 input {
+    z-index: 999;
     padding: 10px;
     width: 80%;
     margin: 10px 0;
@@ -67,24 +70,28 @@ button:hover {
 }
 
 .grama1 {
+    z-index: 1;
     position: absolute;
     top: 618px;
     left: -10px;
 }
 
 .grama2 {
+    z-index: -1;
     position: absolute;
     top: 618px;
     left: 560px;
 }
 
 .grama3 {
+    z-index: -1;
     position: absolute;
     top: 618px;
     left: 900px;
 }
 
 .grama4 {
+    z-index: 1;
     position: absolute;
     top: 618px;
     right: 0;

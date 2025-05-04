@@ -10,9 +10,17 @@
   <div class="container">
     <h1>Numbro do bixo</h1>
     <img class="botas" src="img/botas.png" alt="">
-    <p>Tente adivinhar um número entre 1 e 10</p>
-    <input type="number" id="guessInput" placeholder="Digite seu palpite" />
-    <button onclick="verificarPalpite()">Enviar</button>
+
+    <p>Tente adivinhar um número entre 1 e 10</p> 
+
+    <p id="mensagemSaldo"></p>
+
+    <input type="number" id="valorAposta" placeholder="Valor da aposta">
+    <button onclick="depositar()" class="depositar">Depositar</button>
+
+    <input type="number" id="palpite" placeholder="Digite seu palpite" />
+    <button onclick="verificarPalpite()" class="enviar">Enviar</button>
+
     <p id="mensagem"></p>
     <p>Tentativas: <span id="tentativas">0</span></p>
   </div>
