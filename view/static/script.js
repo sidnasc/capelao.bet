@@ -1,7 +1,17 @@
 let saldoGlobal = 0;
-const numeroSecreto = Math.floor(Math.random() * 11); 
+let numeroSecreto = Math.floor(Math.random() * 11); 
 let tentativas = 0;
 const limiteTentativas = 5;
+
+const input = document.getElementById('palpite');
+const mensagem = document.getElementById('mensagem');
+const tentativasSpan = document.getElementById('tentativas');
+const botaoEnviar = document.querySelector('.enviar');
+const botaoDeposito = document.querySelector('.depositar');
+const mensagemSaldo = document.querySelector("#mensagemSaldo");
+const saldoTotal = document.querySelector('#saldoTotal')
+
+atualizarSaldoBD(0)
 
 async function depositar() {
   const valorAposta = Number(document.querySelector("#valorAposta").value);
@@ -20,36 +30,41 @@ async function depositar() {
       mensagemSaldo.textContent = "❌ Você não tem saldo suficiente para essa aposta.";
       return;
     }
-  
+    
     saldoGlobal = valorAposta;
+    atualizarSaldoBD(-valorAposta)
+    botaoEnviar.disabled = false
+    botaoDeposito.disabled = true
 
-  saldoGlobal += Number(valorAposta);
+  // saldoGlobal += Number(valorAposta);
   mensagemSaldo.textContent = `Saldo depositado: ${saldoGlobal.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`;
 }
 
-function finalizar() {
+function  atualizarSaldoBD(diferencaSaldo) {
   fetch("/definir_saldo", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ saldo: saldoGlobal })  // saldoGlobal calculado no JS
+    body: JSON.stringify({ saldo: diferencaSaldo })  // saldoGlobal calculado no JS
   })
   .then(res => res.json())
   .then(data => {
-    mensagemSaldo.textContent = `Saldo sincronizado: R$ ${data.novo_saldo.toFixed(2)}`;
-    location.reload();
+    saldoTotal.textContent = `Saldo sincronizado: R$ ${data.novo_saldo.toFixed(2)}`;
+    // location.reload();
   });
 }
 
-async function verificarPalpite() {
-  const input = document.getElementById('palpite');
-  const mensagem = document.getElementById('mensagem');
-  const tentativasSpan = document.getElementById('tentativas');
-  const botao = document.querySelector('enviar');
-  const mensagemSaldo = document.querySelector("#mensagemSaldo");
+function zerarValores() {
+  saldoGlobal = 0;
+  numeroSecreto = Math.floor(Math.random() * 11); 
+  tentativas = 0;
+  botaoEnviar.disabled = true
+  botaoDeposito.disabled = false
+}
 
+async function verificarPalpite() {
   const palpite = Number(input.value);
 
-  const custoTentativa = valorAposta * 0.07;
+  const custoTentativa = saldoGlobal * 0.07;
 
   if (isNaN(palpite) || palpite < 0 || palpite > 10) {
     mensagem.textContent = "Digite um número válido entre 0 e 10.";
@@ -62,7 +77,7 @@ async function verificarPalpite() {
     mensagem.textContent = "Saldo insuficiente para continuar jogando.";
     mensagem.style.color = "gray";
     input.disabled = true;
-    botao.disabled = true;
+    botaoEnviar.disabled = true;
     return;
   }
 
@@ -74,7 +89,8 @@ async function verificarPalpite() {
     saldoGlobal = (saldoGlobal * 1.7);
     mensagemSaldo.textContent = `Saldo multiplicado: ${saldoGlobal.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`;
     
-    finalizar()
+    zerarValores()
+    atualizarSaldoBD(saldoGlobal)
   } else {
     saldoGlobal -= custoTentativa;
 
@@ -83,7 +99,8 @@ async function verificarPalpite() {
       mensagem.style.color = "black";
 
 
-      finalizar()
+      zerarValores()
+      atualizarSaldoBD(saldoGlobal)
     }  else {
       mensagem.textContent = "Tente novamente.";
       mensagem.style.color = "red";

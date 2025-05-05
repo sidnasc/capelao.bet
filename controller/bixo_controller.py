@@ -20,8 +20,8 @@ class bixoController:
         novo_saldo = float(data.get('saldo', 0))
         print(novo_saldo)
 
-        usuario = Usuario.query.get(flask.session['usuario'])
-        usuario.dinheiro = novo_saldo
+        usuario: Usuario = Usuario.query.get(flask.session['usuario'])
+        usuario.aumentarDinheiro(novo_saldo)
         db.session.commit()
 
         return flask.jsonify({ 'novo_saldo': usuario.dinheiro })

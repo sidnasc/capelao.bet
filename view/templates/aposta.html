@@ -12,14 +12,17 @@
     <img class="botas" src="{{ url_for('static', filename='img/botas.png') }}" alt="">
 
     <p>Tente adivinhar um número entre 1 e 10</p> 
+    
 
-    <p id="mensagemSaldo">R$:{{ logado.dinheiro }}</p>
+    <!-- <p id="saldoTotal">R$:{{ logado.dinheiro }}</p> -->
+    <p id="saldoTotal"></p>
+    <p id="mensagemSaldo">Valor apostado: R$0.00</p>
 
     <input type="number" id="valorAposta" placeholder="Valor da aposta">
     <button onclick="depositar()" class="depositar">Depositar</button>
 
     <input type="number" id="palpite" placeholder="Digite seu palpite" />
-    <button onclick="verificarPalpite()" class="enviar">Enviar</button>
+    <button disabled onclick="verificarPalpite()" class="enviar">Enviar</button>
 
     <p id="mensagem"></p>
     <p>Tentativas: <span id="tentativas">0</span></p>
