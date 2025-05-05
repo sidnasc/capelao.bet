@@ -40,7 +40,7 @@ app.add_url_rule('/definir_saldo', 'definir_saldo', bixoController.definir_saldo
 app.add_url_rule('/get_saldo', 'get_saldo', bixoController.get_saldo)
 
 app.add_url_rule('/get_eventos', 'get_eventos', ApostasController.get_eventos)
-
+app.add_url_rule('/reg_aposta', 'reg_aposta', ApostasController.reg_aposta, methods=['POST'])
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)

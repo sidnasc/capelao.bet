@@ -1,26 +1,76 @@
-fetch('/get_eventos')
-      .then(res => res.json())
-      .then(dados => {
-        const container = document.getElementById("eventos");
+// Função para criar a estrutura HTML de um evento
+function criarEventoElemento(item) {
+  const div = document.createElement("div");
+  div.className = "evento";
 
-        dados.forEach(item => {
-          const div = document.createElement("div");
-          div.className = "evento";
-
-          div.innerHTML = `
+  div.innerHTML = `
             <div class="tituloAposta">${item.evento}</div>
             <div class="odd">
-              <button>Casa ${item.odd_casa}</button> X
-              <button>Visitante ${item.odd_visitante}</button> 
+              <button data-tipo="casa">Casa ${item.odd_casa}</button> x
+              <button data-tipo="visitante">Visitante ${item.odd_visitante}</button> 
             </div>
             <div class="input_aposta">
-              <input type="number" name="valorAposta" id="valorAposta" placeholder="Digite o valor da aposta:"> 
+              <input type="number" name="valorAposta" id="valorAposta" class="valor-aposta" placeholder="Digite o valor da aposta:"> 
             </div>
-          `;
+          `;;
 
-          container.appendChild(div);
-        });
-      })
-      .catch(err => {
-        console.error("Erro ao buscar eventos:", err);
+  adicionarListeners(div, item);
+  return div;
+}
+
+// Função para adicionar listeners aos botões do evento
+function adicionarListeners(div, item) {
+  const botoes = div.querySelectorAll("button");
+  botoes.forEach(botao => {
+    botao.addEventListener("click", () => registrarAposta(botao, div, item));
+  });
+}
+
+// Função para registrar uma aposta
+function registrarAposta(botao, div, item) {
+  const tipo = botao.dataset.tipo;
+  const valorInput = div.querySelector(".valor-aposta");
+  const valor = parseFloat(valorInput.value);
+
+  if (!valor || valor <= 0) {
+    alert("Digite um valor válido!");
+    return;
+  }
+
+  fetch('/reg_aposta', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      tipoOdd: tipo,
+      valor: valor,
+      idEvento: item.id
+    })
+  })
+    .then(res => {
+      if (res.ok) {
+        alert("Aposta registrada com sucesso!");
+        location.reload()
+      }
+      else alert("Erro ao registrar aposta.");
+    });
+}
+
+// Função principal para buscar eventos e exibir
+function carregarEventos() {
+  fetch('/get_eventos')
+    .then(res => res.json())
+    .then(dados => {
+      const container = document.getElementById("eventos");
+      container.innerHTML = ""; // limpa antes
+      dados.forEach(item => {
+        const eventoElemento = criarEventoElemento(item);
+        container.appendChild(eventoElemento);
       });
+    })
+    .catch(err => {
+      console.error("Erro ao buscar eventos:", err);
+    });
+}
+
+// Inicializa
+carregarEventos();

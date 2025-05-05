@@ -26,13 +26,13 @@
             <h2>apostas cadastradas:</h2>
             <ul>
                 {% for aposta in apostas %}
-                    <li>{{ aposta["nome"] }} : {{ aposta["data"]}} : apostador {{ aposta.Eventos.nome}}</li>
+                    <li>Evento {{ aposta.Eventos.nome}} | Valor: {{ aposta.valor }} | Ganhador : {{ aposta.tipoOdd.value}} </li>
                 {% else %}
                     <li>Nenhum usuário ainda.</li>
                 {% endfor %}
             </ul>
     
-            <a href="/numbroDoBixo">jogo do magago</a>
+            <a href="/numbroDoBixo"><img src="{{ url_for('static', filename='img/botas.png') }}" alt="">Jogo do magago</a>
     
             <a href="/logOut">Sair da conta</a>
         </div>

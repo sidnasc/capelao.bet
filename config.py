@@ -5,4 +5,4 @@ db = flask_sqlalchemy.SQLAlchemy()
 
 class Config() :
     SQLALCHEMY_DATABASE_URI = 'sqlite:///banco.db'
-    
+

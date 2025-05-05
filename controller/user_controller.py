@@ -10,8 +10,8 @@ class UserController:
     def index():
         if 'usuario' in flask.session:
             eventos = Eventos.query.all()
-            apostas = Aposta.query.all()
             logado = Usuario.query.get(flask.session['usuario'])
+            apostas = Aposta.query.filter_by(idUsuario=flask.session['usuario']).all()
             return flask.render_template('user.html',  eventos=eventos, apostas=apostas, logado=logado)
         
         return flask.redirect(flask.url_for('registrar'))
