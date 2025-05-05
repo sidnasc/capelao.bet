@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Capelao BET</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='apostas.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css.css') }}">
+</head>
+<body>
+    <h1 id="titulo">Capelao BET</h1>
+
+    <div id="caixa">
+
+        <div id="conteiner">
+            <h1>Seja bem viado, {{ logado.nome }}!</h1>
+        
+            <h2>eventos cadastrados:</h2>
+            <ul>
+                {% for evento in eventos %}
+                    <li>{{ evento["nome"] }} : {{ evento["data"]}}</li>
+                {% else %}
+                    <li>Nenhum usuário ainda.</li>
+                {% endfor %}
+            </ul>
+    
+            <h2>apostas cadastradas:</h2>
+            <ul>
+                {% for aposta in apostas %}
+                    <li>{{ aposta["nome"] }} : {{ aposta["data"]}} : apostador {{ aposta.Eventos.nome}}</li>
+                {% else %}
+                    <li>Nenhum usuário ainda.</li>
+                {% endfor %}
+            </ul>
+    
+            <a href="/numbroDoBixo">jogo do magago</a>
+    
+            <a href="/logOut">Sair da conta</a>
+        </div>
+    
+        <div id="conteiner">
+            <div id="eventos">
+        
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='eventos.js') }}"></script>
+</body>
+</html>

@@ -21,15 +21,17 @@ body {
     font-family: sans-serif;
     background-image: url(img/monkey.gif);
     background-size: cover;
+    font-size: 22pt;
 }
 
 h1 {
     font-family: "Noto Sans", sans-serif;
     text-align: center;
+    font-size: 5lvh;
 }
 
 h2 {
-    font-size: 20pt;
+    font-size: 30pt;
 }
 
 #titulo {

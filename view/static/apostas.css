@@ -1,0 +1,37 @@
+.evento {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    max-width: 300px;
+    
+}
+.tituloAposta {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 17pt;
+}
+.odd {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+button {
+    font-size: 16pt;
+}
+
+#valorAposta {
+    width: 80%;
+}
+
+.input-aposta {
+    display: flex;
+}
+
+.input-aposta input {
+    font-size: 22pt;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }

@@ -9,11 +9,10 @@ class UserController:
     @staticmethod
     def index():
         if 'usuario' in flask.session:
-            usuarios = Usuario.query.all()
             eventos = Eventos.query.all()
             apostas = Aposta.query.all()
             logado = Usuario.query.get(flask.session['usuario'])
-            return flask.render_template('placeholder.html', usuarios=usuarios, eventos=eventos, apostas=apostas, logado=logado)
+            return flask.render_template('user.html',  eventos=eventos, apostas=apostas, logado=logado)
         
         return flask.redirect(flask.url_for('registrar'))
     

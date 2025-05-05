@@ -4,6 +4,7 @@ import config
 from controller.user_controller import UserController
 from controller.admin_controller import AdminController
 from controller.bixo_controller import bixoController
+from controller.apostas_controller import ApostasController
 
 
 
@@ -38,7 +39,7 @@ app.add_url_rule('/numbroDoBixo', "numbroDoBixo", bixoController.numbroBixo)
 app.add_url_rule('/definir_saldo', 'definir_saldo', bixoController.definir_saldo, methods=['POST'])
 app.add_url_rule('/get_saldo', 'get_saldo', bixoController.get_saldo)
 
-
+app.add_url_rule('/get_eventos', 'get_eventos', ApostasController.get_eventos)
 
 
 if __name__ == "__main__":
