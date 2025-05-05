@@ -41,10 +41,11 @@ async function depositar() {
 }
 
 function  atualizarSaldoBD(diferencaSaldo) {
+  saldoFinal = parseFloat(diferencaSaldo.toFixed(2));
   fetch("/definir_saldo", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ saldo: diferencaSaldo })  // saldoGlobal calculado no JS
+    body: JSON.stringify({ saldo: saldoFinal })  // saldoGlobal calculado no JS
   })
   .then(res => res.json())
   .then(data => {
@@ -89,8 +90,8 @@ async function verificarPalpite() {
     saldoGlobal = (saldoGlobal * 1.7);
     mensagemSaldo.textContent = `Saldo multiplicado: ${saldoGlobal.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`;
     
-    zerarValores()
     atualizarSaldoBD(saldoGlobal)
+    zerarValores()
   } else {
     saldoGlobal -= custoTentativa;
 
@@ -99,8 +100,8 @@ async function verificarPalpite() {
       mensagem.style.color = "black";
 
 
-      zerarValores()
       atualizarSaldoBD(saldoGlobal)
+      zerarValores()
     }  else {
       mensagem.textContent = "Tente novamente.";
       mensagem.style.color = "red";
