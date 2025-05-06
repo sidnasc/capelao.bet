@@ -21,7 +21,7 @@ body {
     font-family: sans-serif;
     background-image: url(img/monkey.gif);
     background-size: cover;
-    font-size: 22pt;
+    /* font-size: 22pt; */
 }
 
 h1 {

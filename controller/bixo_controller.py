@@ -12,13 +12,12 @@ class bixoController:
     
     @staticmethod
     def definir_saldo():
-        print('chegou aqui')
         if 'usuario' not in flask.session:
             return flask.jsonify({'erro': 'não autenticado'}), 403
 
         data = flask.request.get_json()
         novo_saldo = float(data.get('saldo', 0))
-        print(novo_saldo)
+
 
         usuario: Usuario = Usuario.query.get(flask.session['usuario'])
         usuario.aumentarDinheiro(novo_saldo)

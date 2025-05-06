@@ -25,8 +25,8 @@ class UserController:
     @staticmethod
     def verificarLogin():
         if flask.request.method == 'POST':
-            email = flask.request.form['email']
-            senha = flask.request.form['senha']
+            email = flask.request.form['email'].strip()
+            senha = flask.request.form['senha'].strip()
 
             usuario: Usuario = Usuario.query.filter_by(email=email, senha=senha).first()
 
@@ -51,9 +51,9 @@ class UserController:
     @staticmethod
     def add_usuarios():
         if flask.request.method == 'POST':
-            nome =flask.request.form['nome']
-            email = flask.request.form['email']
-            senha = flask.request.form['senha']
+            nome =flask.request.form['nome'].strip()
+            email = flask.request.form['email'].strip()
+            senha = flask.request.form['senha'].strip()
 
             newUsuario = Usuario(nome=nome, email=email, senha=senha)
             db.session.add(newUsuario)
