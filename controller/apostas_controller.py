@@ -42,3 +42,27 @@ class ApostasController:
 
         return flask.jsonify({"mensagem": "Aposta registrada com sucesso"}), 200
     
+    def get_apostas():
+        apostas: Aposta = Aposta.query.filter_by(idUsuario=flask.session['usuario']).all()
+        dados = []  
+        for aposta in apostas:
+            dados.append({
+                'id' : aposta.id,
+                'Eventos': aposta.Eventos.nome,
+                'valor': aposta.valor,
+                'tipoOdd': aposta.tipoOdd.value
+            })
+        return flask.jsonify(dados)
+    
+    def del_aposta():
+        data = flask.request.get_json()
+        id_aposta = data.get('id')
+
+        aposta = Aposta.query.get(id_aposta)
+        if aposta:
+            db.session.delete(aposta)
+            db.session.commit()
+            flask.jsonify({'success': True}), 200
+            return flask.redirect(flask.url_for('index'))
+        else:
+            return flask.jsonify({'error': 'Aposta não encontrada'}), 404

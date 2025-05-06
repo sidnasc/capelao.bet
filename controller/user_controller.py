@@ -9,10 +9,8 @@ class UserController:
     @staticmethod
     def index():
         if 'usuario' in flask.session:
-            eventos = Eventos.query.all()
             logado = Usuario.query.get(flask.session['usuario'])
-            apostas = Aposta.query.filter_by(idUsuario=flask.session['usuario']).all()
-            return flask.render_template('user.html',  eventos=eventos, apostas=apostas, logado=logado)
+            return flask.render_template('user.html', logado=logado)
         
         return flask.redirect(flask.url_for('registrar'))
     
@@ -61,7 +59,7 @@ class UserController:
             db.session.add(newUsuario)
             db.session.commit()
 
-        return flask.redirect(flask.url_for('index'))
+        return flask.redirect(flask.url_for('login'))
     
     @staticmethod
     def logOut():

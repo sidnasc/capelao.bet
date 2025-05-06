@@ -27,3 +27,4 @@ class Aposta(db.Model):
         else:
             return self.Eventos.oddVisitante
 
+    

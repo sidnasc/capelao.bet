@@ -107,3 +107,7 @@ input {
     transition: all linear 100ms;
     font-weight: 800;
 }
+
+a {
+    font-size: 12pt;
+}

@@ -18,6 +18,24 @@ function criarEventoElemento(item) {
   return div;
 }
 
+function criarAposta(aposta) {
+  const div = document.createElement("div");
+  div.className = "evento";
+
+  div.innerHTML = `
+            <div>
+              <li>Evento ${aposta.Eventos} | Valor: ${ aposta.valor } | Ganhador : ${ aposta.tipoOdd}</li>
+              <button class='excluirAposta' data-id="${aposta.id}">EXCLUIR</button>
+            </div>
+          `;;
+
+  div.querySelector(".excluirAposta").addEventListener("click", () => {
+    excluirAposta(aposta.id);
+  });
+
+  return div;
+}
+
 // Função para adicionar listeners aos botões do evento
 function adicionarListeners(div, item) {
   const botoes = div.querySelectorAll("button");
@@ -48,8 +66,7 @@ function registrarAposta(botao, div, item) {
   })
     .then(res => {
       if (res.ok) {
-        alert("Aposta registrada com sucesso!");
-        location.reload()
+        carregarApostas()
       }
       else alert("Erro ao registrar aposta.");
     });
@@ -72,5 +89,37 @@ function carregarEventos() {
     });
 }
 
+function carregarApostas() {
+  fetch('/get_apostas')
+    .then(res => res.json())
+    .then(dados => {
+      const container = document.getElementById("apostas");
+      container.innerHTML = ""; // limpa antes
+      dados.forEach(item => {
+        const eventoElemento = criarAposta(item);
+        container.appendChild(eventoElemento);
+      });
+    })
+    .catch(err => {
+      console.error("Erro ao buscar eventos:", err);
+    });
+}
+
+function excluirAposta(id) {
+  fetch('/del_aposta', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: id })
+  })
+    .then(res => {
+      if (res.ok) {
+        carregarApostas();
+      } else {
+        alert("Erro ao excluir aposta.");
+      }
+    });
+}
+
 // Inicializa
 carregarEventos();
+carregarApostas();

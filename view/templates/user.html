@@ -13,8 +13,12 @@
 
         <div id="conteiner">
             <h1>Seja bem viado, {{ logado.nome }}!</h1>
+
+            <div id="apostas">
+
+            </div>
         
-            <h2>eventos cadastrados:</h2>
+            <!-- <h2>eventos cadastrados:</h2>
             <ul>
                 {% for evento in eventos %}
                     <li>{{ evento["nome"] }} : {{ evento["data"]}}</li>
@@ -30,9 +34,9 @@
                 {% else %}
                     <li>Nenhum usuário ainda.</li>
                 {% endfor %}
-            </ul>
+            </ul> -->
     
-            <a href="/numbroDoBixo"><img src="{{ url_for('static', filename='img/botas.png') }}" alt="">Jogo do magago</a>
+            <a href="/numbroDoBixo">Jogo do magago</a>
     
             <a href="/logOut">Sair da conta</a>
         </div>
