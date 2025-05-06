@@ -2,7 +2,7 @@
 
 ## 📌 Descrição Geral
 
-**capelao.bet** é uma aplicação web que simula um sistema de apostas em eventos (possivelmente inspirado no jogo do bicho), com interface para usuários, administradores e controle de apostas. O projeto segue o padrão MVC (Model-View-Controller), organizado em Python, utilizando bibliotecas leves e estrutura modular.
+**capelao.bet** é uma aplicação web que simula um sistema de apostas em eventos (e também o jogo do bicho), com interface para usuários, administradores e controle de apostas. O projeto segue o padrão MVC (Model-View-Controller), organizado em Python, utilizando bibliotecas leves e estrutura modular.
 
 ---
 
